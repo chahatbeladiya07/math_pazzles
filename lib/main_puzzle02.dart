@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:math_pazzles/win_page03.dart';
+import 'Config.dart';
 
 class main_puzzle extends StatefulWidget {
-  const main_puzzle({Key? key}) : super(key: key);
+  int level;
+  main_puzzle(this.level);
   @override
   State<main_puzzle> createState() => _main_puzzleState();
 }
 
 class _main_puzzleState extends State<main_puzzle> {
   @override
+  int level=0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    level=widget.level;
+  }
+  String str="";
   Widget build(BuildContext context) {
     double heights= MediaQuery.of(context).size.height;
     double widths= MediaQuery.of(context).size.width;
@@ -45,7 +55,7 @@ class _main_puzzleState extends State<main_puzzle> {
                         fit: BoxFit.fill
                       ),
                     ),
-                    child:  Text("Puzzle 1",style: TextStyle(fontSize: heights*0.05,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic),),
+                    child:  Text("Puzzle ${level+1}",style: TextStyle(fontSize: heights*0.05,fontWeight: FontWeight.w500,fontStyle: FontStyle.italic),),
                   ),
                   Padding(
                     padding: EdgeInsets.all(heights*0.01),
@@ -59,7 +69,7 @@ class _main_puzzleState extends State<main_puzzle> {
                 width: widths*0.92,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/p1.png"),
+                      image: AssetImage("assets/p${level+1}.png"),
                     fit: BoxFit.fill
                   ),
                 ),
@@ -76,17 +86,29 @@ class _main_puzzleState extends State<main_puzzle> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
+                          alignment: Alignment.centerLeft,
                           height: heights * 0.05,
                           width: widths * 0.60,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(heights*0.01),
                           ),
+                          child: Text("$str"),
                         ),
                         SizedBox(
                           height: heights * 0.08,
                           width: widths * 0.12,
-                          child: Image.asset("assets/delete.png",fit: BoxFit.fill,),
+                          child: InkWell(
+                            onTap: (){
+                              if(str!=""){
+                                str=str.substring(0,str.length-1);
+                              }
+                              setState(() {
+
+                              });
+                            },
+                              child: Image.asset("assets/delete.png",fit: BoxFit.fill,)
+                          ),
                           // decoration: BoxDecoration(
                           //     color: Colors.white,
                           //     image: DecorationImage(
@@ -96,12 +118,13 @@ class _main_puzzleState extends State<main_puzzle> {
                           // ),
                         ),
                         TextButton(onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => win_page(),));
+                          if(str==Config.ans_list[level]){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => win_page(level),));
+                          }
                         }, child: Text("Submit", style: TextStyle(
                             fontStyle: FontStyle.italic,
                             color: Colors.white,
                             fontSize: heights*0.03),)),
-
                       ],
                     ),
                     Row(
@@ -115,7 +138,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("1",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"1";
+                            });
+                          }, child: Text("1",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -127,7 +154,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("2",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"2";
+                            });
+                          }, child: Text("2",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -139,7 +170,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("3",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"3";
+                            });
+                          }, child: Text("3",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -151,7 +186,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("4",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"4";
+                            });
+                          }, child: Text("4",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -163,7 +202,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("5",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"5";
+                            });
+                          }, child: Text("5",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -175,7 +218,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("6",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"6";
+                            });
+                          }, child: Text("6",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -187,7 +234,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("7",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"7";
+                            });
+                          }, child: Text("7",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -199,7 +250,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("8",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"8";
+                            });
+                          }, child: Text("8",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
                         ),
@@ -211,7 +266,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {},
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"9";
+                            });
+                          },
                               child: Text("9",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),
@@ -224,7 +283,11 @@ class _main_puzzleState extends State<main_puzzle> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {},
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"0";
+                            });
+                          },
                               child: Text("0",
                               style: TextStyle(
                                   color: Colors.white, fontSize: heights*0.020))),

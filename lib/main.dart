@@ -28,6 +28,7 @@ class first_page extends StatefulWidget {
 }
 
 class _first_pageState extends State<first_page> {
+  int level=0;
   @override
   Widget build(BuildContext context) {
     double heights=MediaQuery.of(context).size.height;
@@ -75,7 +76,7 @@ class _first_pageState extends State<first_page> {
                   children: [
                     InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => main_puzzle(),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => main_puzzle(level),));
                       },
                       child: Container(
                         margin: EdgeInsets.all(heights*0.01),

@@ -1,4 +1,6 @@
 class Config {
+
+  static List <String> ans_list=["1","2","3","4","5","6","7","8"];
   static List <String> puzzle_pic= [
     "p1.png",
     "p2.png",
